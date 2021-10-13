@@ -66,7 +66,7 @@ public class ChannelSettingsFragment extends BaseFragment implements PermissionF
     private View.OnClickListener memberSettingClickListener;
     protected View.OnClickListener headerLeftButtonListener;
     protected OnMenuItemClickListener<ChannelSettingsView.ChannelSettingMenu, GroupChannel> menuItemClickListener;
-    private LoadingDialogHandler loadingDialogHandler;
+    protected LoadingDialogHandler loadingDialogHandler;
 
     public ChannelSettingsFragment() {}
 
