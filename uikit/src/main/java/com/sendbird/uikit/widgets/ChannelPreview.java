@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.BindingAdapter;
 
+import com.sendbird.android.AdminMessage;
 import com.sendbird.android.BaseMessage;
 import com.sendbird.android.FileMessage;
 import com.sendbird.android.GroupChannel;
@@ -135,7 +136,11 @@ public class ChannelPreview extends FrameLayout {
         } else if (lastMessage instanceof FileMessage) {
             textView.setMaxLines(1);
             textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            message = ((FileMessage)lastMessage).getName();
+            message = ((FileMessage) lastMessage).getName();
+        } else if (lastMessage instanceof AdminMessage) {
+            textView.setMaxLines(2);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            message = lastMessage.getMessage();
         }
         textView.setText(message);
     }
