@@ -22,6 +22,7 @@ import com.sendbird.android.GroupChannel;
 import com.sendbird.android.UserMessage;
 import com.sendbird.uikit.R;
 import com.sendbird.uikit.SendBirdUIKit;
+import com.sendbird.uikit.consts.StringSet;
 import com.sendbird.uikit.utils.ChannelUtils;
 import com.sendbird.uikit.utils.DateUtils;
 import com.sendbird.uikit.utils.DrawableUtils;
@@ -136,7 +137,19 @@ public class ChannelPreview extends FrameLayout {
         } else if (lastMessage instanceof FileMessage) {
             textView.setMaxLines(1);
             textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            message = ((FileMessage) lastMessage).getName();
+
+            Context context = textView.getContext();
+            
+            String mimeType = ((FileMessage) lastMessage).getType();
+            if (mimeType.toLowerCase().contains(StringSet.image)) {
+                message = context.getString(R.string.mojo_attachment_type_image);
+            } else if (mimeType.toLowerCase().contains(StringSet.video)) {
+                message = context.getString(R.string.mojo_attachment_type_video);
+            } else if (mimeType.toLowerCase().contains(StringSet.audio)) {
+                message = context.getString(R.string.mojo_attachment_type_audio);
+            } else {
+                message = context.getString(R.string.mojo_attachment_type_generic);
+            }
         } else if (lastMessage instanceof AdminMessage) {
             textView.setMaxLines(2);
             textView.setEllipsize(TextUtils.TruncateAt.END);
