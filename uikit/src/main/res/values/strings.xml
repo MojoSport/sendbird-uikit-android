@@ -175,9 +175,4 @@
     <string name="sb_text_search_result_empty">No results found.</string>
     <string name="sb_text_error_search_failure">Something is wrong</string>
 
-    <string name="attachment_type_image">Image File</string>
-    <string name="attachment_type_video">Video File</string>
-    <string name="attachment_type_audio">Audio File</string>
-    <string name="attachment_type_generic">Attachment</string>
-
 </resources>

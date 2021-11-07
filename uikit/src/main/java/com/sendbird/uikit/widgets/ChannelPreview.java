@@ -137,19 +137,7 @@ public class ChannelPreview extends FrameLayout {
         } else if (lastMessage instanceof FileMessage) {
             textView.setMaxLines(1);
             textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-
-            Context context = textView.getContext();
-            
-            String mimeType = ((FileMessage) lastMessage).getType();
-            if (mimeType.toLowerCase().contains(StringSet.image)) {
-                message = context.getString(R.string.attachment_type_image);
-            } else if (mimeType.toLowerCase().contains(StringSet.video)) {
-                message = context.getString(R.string.attachment_type_video);
-            } else if (mimeType.toLowerCase().contains(StringSet.audio)) {
-                message = context.getString(R.string.attachment_type_audio);
-            } else {
-                message = context.getString(R.string.attachment_type_generic);
-            }
+            message = ((FileMessage)lastMessage).getName();
         } else if (lastMessage instanceof AdminMessage) {
             textView.setMaxLines(2);
             textView.setEllipsize(TextUtils.TruncateAt.END);
