@@ -185,7 +185,7 @@ public class ChannelListViewModel extends BaseViewModel implements PagerRecycler
         applyChannelList();
     }
 
-    private boolean deleteChannel(@NonNull GroupChannel deletedChannel) {
+    public boolean deleteChannel(@NonNull GroupChannel deletedChannel) {
         boolean deleted;
         synchronized (channelListCache) {
             deleted = channelListCache.remove(deletedChannel);
