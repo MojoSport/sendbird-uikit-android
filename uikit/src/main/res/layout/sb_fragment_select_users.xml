@@ -14,6 +14,7 @@
             android:visibility="gone"/>
 
         <FrameLayout
+            android:id="@+id/select_users_content_frame_layout"
             android:layout_width="@dimen/sb_size_0"
             android:layout_height="@dimen/sb_size_0"
             app:layout_constraintTop_toBottomOf="@id/abvSelectUsers"
