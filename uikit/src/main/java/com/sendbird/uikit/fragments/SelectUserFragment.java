@@ -17,6 +17,7 @@ import com.sendbird.uikit.activities.adapter.UserListAdapter;
 import com.sendbird.uikit.consts.StringSet;
 import com.sendbird.uikit.databinding.SbFragmentSelectUsersBinding;
 import com.sendbird.uikit.interfaces.CustomUserListQueryHandler;
+import com.sendbird.uikit.interfaces.UserInfo;
 import com.sendbird.uikit.log.Logger;
 import com.sendbird.uikit.utils.TextUtils;
 import com.sendbird.uikit.vm.SelectableUserInfoListViewModel;
@@ -230,8 +231,12 @@ abstract public class SelectUserFragment extends BaseGroupChannelFragment {
 
         viewModel.getUserList().observe(this, users -> {
             Logger.dev("++ users size : %s", users.size());
-            adapter.setItems(users);
+            adapter.setItems(filterUserList(users));
         });
+    }
+
+    protected List<UserInfo> filterUserList(List<UserInfo> userList) {
+        return userList;
     }
 
     /**
