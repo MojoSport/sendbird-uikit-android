@@ -98,7 +98,7 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnItemC
     private static final int CAPTURE_IMAGE_PERMISSIONS_REQUEST_CODE = 2001;
     private static final int PICK_IMAGE_PERMISSIONS_REQUEST_CODE = 2002;
     private static final int PICK_FILE_PERMISSIONS_REQUEST_CODE = 2003;
-    private static final int GROUP_CHANNEL_SETTINGS_REQUEST_CODE = 2004;
+    public static final int GROUP_CHANNEL_SETTINGS_REQUEST_CODE = 2004;
     private static final int PERMISSION_REQUEST_ALL = 2005;
     private static final int PERMISSION_REQUEST_STORAGE = 2006;
 
