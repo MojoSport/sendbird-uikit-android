@@ -28,7 +28,7 @@ abstract class BaseFragment extends PermissionFragment implements DialogProvider
     }
 
     protected boolean isActive() {
-        boolean isDeactivated = isRemoving() || isDetached() || getContext() == null;
+        boolean isDeactivated = !isAdded() || isRemoving() || isDetached() || getContext() == null;
         return !isDeactivated;
     }
 
