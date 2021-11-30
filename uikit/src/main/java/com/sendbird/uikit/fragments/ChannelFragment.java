@@ -1022,7 +1022,7 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnItemC
         }
     }
 
-    private boolean isLongClickable(BaseMessage message) {
+    public boolean isLongClickable(BaseMessage message) {
         BaseMessage.SendingStatus status = message.getSendingStatus();
         switch (status) {
             case FAILED:
@@ -1105,7 +1105,7 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnItemC
         }
     }
 
-    private void showEmojiActionsDialog(BaseMessage message, DialogListItem[] actions) {
+    public void showEmojiActionsDialog(BaseMessage message, DialogListItem[] actions) {
         if (message == null || actions == null || getContext() == null || getFragmentManager() == null) {
             return;
         }
