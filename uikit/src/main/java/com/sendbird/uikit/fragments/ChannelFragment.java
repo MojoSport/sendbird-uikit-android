@@ -1299,7 +1299,7 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
         }
     }
 
-    private void showEmojiActionsDialog(BaseMessage message, DialogListItem[] actions) {
+    public void showEmojiActionsDialog(BaseMessage message, DialogListItem[] actions) {
         if (message == null || actions == null || getContext() == null || getFragmentManager() == null) {
             return;
         }
@@ -1563,7 +1563,7 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
         this.listItemClickListener = listItemClickListener;
     }
 
-    private void setOnListItemLongClickListener(OnIdentifiableItemLongClickListener<BaseMessage> listItemLongClickListener) {
+    public void setOnListItemLongClickListener(OnIdentifiableItemLongClickListener<BaseMessage> listItemLongClickListener) {
         this.listItemLongClickListener = listItemLongClickListener;
     }
 
