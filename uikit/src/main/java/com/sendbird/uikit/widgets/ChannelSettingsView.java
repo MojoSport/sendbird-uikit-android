@@ -162,7 +162,7 @@ public class ChannelSettingsView extends FrameLayout {
         GroupChannel.PushTriggerOption pushTriggerOption = channel.getMyPushTriggerOption();
         binding.scSwitch.setChecked(pushTriggerOption != GroupChannel.PushTriggerOption.OFF);
 
-        binding.moderationItem.setVisibility(channel.getMyRole() == Member.Role.OPERATOR ? View.GONE : View.GONE);
+        binding.moderationItem.setVisibility(channel.getMyRole() == Member.Role.OPERATOR ? View.VISIBLE : View.GONE);
         binding.searchItem.setVisibility(Available.isSupportMessageSearch() ? View.VISIBLE : View.GONE);
     }
 }

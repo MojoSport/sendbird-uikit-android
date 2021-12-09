@@ -26,12 +26,12 @@ import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
  * within a {@link RecyclerView}.
  */
 public class UserListAdapter extends BaseAdapter<UserInfo, BaseViewHolder<UserInfo>> {
-    protected List<UserInfo> userList;
-    protected List<String> disabledUserList;
-    protected final List<String> selectedUserList = new ArrayList<>();
-    protected OnItemClickListener<UserInfo> listener;
-    protected OnItemLongClickListener<UserInfo> longClickListener;
-    protected OnUserSelectChangedListener userSelectChangedListener;
+    private List<UserInfo> userList;
+    private List<String> disabledUserList;
+    private final List<String> selectedUserList = new ArrayList<>();
+    private OnItemClickListener<UserInfo> listener;
+    private OnItemLongClickListener<UserInfo> longClickListener;
+    private OnUserSelectChangedListener userSelectChangedListener;
 
     /**
      * Constructor
@@ -178,7 +178,7 @@ public class UserListAdapter extends BaseAdapter<UserInfo, BaseViewHolder<UserIn
         return selectedUserList;
     }
 
-    protected boolean isSelected(String userId) {
+    private boolean isSelected(String userId) {
         return selectedUserList.contains(userId);
     }
 

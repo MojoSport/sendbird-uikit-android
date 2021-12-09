@@ -15,14 +15,12 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.BindingAdapter;
 
-import com.sendbird.android.AdminMessage;
 import com.sendbird.android.BaseMessage;
 import com.sendbird.android.FileMessage;
 import com.sendbird.android.GroupChannel;
 import com.sendbird.android.UserMessage;
 import com.sendbird.uikit.R;
 import com.sendbird.uikit.SendBirdUIKit;
-import com.sendbird.uikit.consts.StringSet;
 import com.sendbird.uikit.utils.ChannelUtils;
 import com.sendbird.uikit.utils.DateUtils;
 import com.sendbird.uikit.utils.DrawableUtils;
@@ -138,10 +136,6 @@ public class ChannelPreview extends FrameLayout {
             textView.setMaxLines(1);
             textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
             message = ((FileMessage)lastMessage).getName();
-        } else if (lastMessage instanceof AdminMessage) {
-            textView.setMaxLines(2);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            message = lastMessage.getMessage();
         }
         textView.setText(message);
     }

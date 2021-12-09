@@ -11,11 +11,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sb_channel_setting_height_132"
-                android:gravity="center"
                 android:orientation="vertical"
+                android:gravity="center"
                 android:paddingLeft="@dimen/sb_size_16"
-                android:paddingRight="@dimen/sb_size_16"
-                android:visibility="gone">
+                android:paddingRight="@dimen/sb_size_16">
 
                 <com.sendbird.uikit.widgets.ChannelCoverView
                     android:id="@+id/ccvChannelImage"
@@ -39,8 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sb_size_1"
                 android:layout_marginLeft="@dimen/sb_size_16"
-                android:layout_marginRight="@dimen/sb_size_16"
-                android:visibility="gone" />
+                android:layout_marginRight="@dimen/sb_size_16"/>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

@@ -61,12 +61,12 @@ public class ChannelSettingsFragment extends BaseFragment implements PermissionF
 
     private SbFragmentChannelSettingsBinding binding;
     private Uri mediaUri;
-    protected GroupChannel channel;
+    private GroupChannel channel;
 
     private View.OnClickListener memberSettingClickListener;
     protected View.OnClickListener headerLeftButtonListener;
     protected OnMenuItemClickListener<ChannelSettingsView.ChannelSettingMenu, GroupChannel> menuItemClickListener;
-    protected LoadingDialogHandler loadingDialogHandler;
+    private LoadingDialogHandler loadingDialogHandler;
 
     public ChannelSettingsFragment() {}
 

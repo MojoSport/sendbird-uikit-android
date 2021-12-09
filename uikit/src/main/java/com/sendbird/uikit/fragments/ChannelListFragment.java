@@ -42,7 +42,7 @@ import com.sendbird.uikit.widgets.StatusFrameView;
  */
 public class ChannelListFragment extends BaseGroupChannelFragment {
     private SbFragmentChannelListBinding binding;
-    protected ChannelListViewModel viewModel;
+    private ChannelListViewModel viewModel;
 
     private View.OnClickListener headerLeftButtonListener;
     private View.OnClickListener headerRightButtonListener;
