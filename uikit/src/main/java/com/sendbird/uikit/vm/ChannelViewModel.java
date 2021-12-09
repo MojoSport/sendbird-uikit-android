@@ -257,7 +257,10 @@ public class ChannelViewModel extends BaseViewModel implements PagerRecyclerView
         Logger.d(">> ChannelViewModel::onMessagesUpdated() from=%s", context.getCollectionEventSource());
         if (messages.isEmpty()) return;
 
-        if (context.getMessagesSendingStatus() == BaseMessage.SendingStatus.SUCCEEDED) {
+        // MOJO added case for EVENT_REACTION_UPDATED so emoji reactions to admin messages result in the UI being updated.
+        // Without this, the reaction does not show up until the user reloads the chat.
+        if ((context.getMessagesSendingStatus() == BaseMessage.SendingStatus.SUCCEEDED)
+                || (context.getCollectionEventSource() == CollectionEventSource.EVENT_REACTION_UPDATED)) {
             // if the source was MESSAGE_SENT, we should remove the message from the pending message datasource.
             if (context.getCollectionEventSource() == CollectionEventSource.EVENT_MESSAGE_SENT) {
                 PendingMessageRepository.getInstance().clearAllFileInfo(messages);
