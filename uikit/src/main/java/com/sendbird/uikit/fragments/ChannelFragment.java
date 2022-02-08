@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -684,6 +685,10 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
             if (args.containsKey(StringSet.KEY_INPUT_TEXT)) {
                 String inputText = args.getString(StringSet.KEY_INPUT_TEXT, "");
                 binding.vgInputBox.setInputText(inputText);
+
+                // Put the cursor at the end of the input text.
+                EditText editText = binding.vgInputBox.getInputEditText();
+                editText.setSelection(editText.getText().length());
             }
 
             if (args.containsKey(StringSet.KEY_KEYBOARD_DISPLAY_TYPE)) {
