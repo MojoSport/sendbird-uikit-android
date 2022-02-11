@@ -4,12 +4,20 @@ android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
+    // These two values are defined elsewhere in this repository, but they are redefined here in
+    // this file so that this library can be used as a standalone module.
+    def UIKIT_VERSION = "2.2.3"
+    def UIKIT_VERSION_CODE = "1"
+
     version = UIKIT_VERSION
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 30
         versionCode Integer.parseInt(UIKIT_VERSION_CODE)
         versionName UIKIT_VERSION
+
+        // The code uses BuildConfig.VERSION_NAME which is no longer available unless defined manually.
+        buildConfigField "String", "VERSION_NAME", "\"$UIKIT_VERSION\""
     }
 
     buildTypes {
