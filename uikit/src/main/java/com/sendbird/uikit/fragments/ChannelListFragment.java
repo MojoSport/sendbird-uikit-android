@@ -2,6 +2,7 @@ package com.sendbird.uikit.fragments;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,8 @@ public class ChannelListFragment extends BaseGroupChannelFragment {
     private OnItemClickListener<GroupChannel> itemClickListener;
     private OnItemLongClickListener<GroupChannel> itemLongClickListener;
 
+    private int themeResourceId;
+
     public ChannelListFragment(){}
 
     @Override
@@ -63,15 +66,25 @@ public class ChannelListFragment extends BaseGroupChannelFragment {
             themeResId = args.getInt(StringSet.KEY_THEME_RES_ID, SendBirdUIKit.getDefaultThemeMode().getResId());
         }
 
-        if (getActivity() != null) {
-            getActivity().setTheme(themeResId);
-        }
+        // Do not set a theme on the parent activity for this Fragment in particular since it is
+        // going to live in a non-SendBird activity. We do not want the SendBird theme to affect the
+        // parent activity.
+        // if (getActivity() != null) {
+        //     getActivity().setTheme(themeResId);
+        // }
+
+        // Because we are no longer setting the theme on the whole activity, keep a reference to the
+        // theme resource ID and apply it at the view level later with a ContextThemeWrapper.
+        themeResourceId = themeResId;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.sb_fragment_channel_list, container, false);
+        // Since we are not using an Activity-wide theme, use a ContextThemeWrapper to theme the view instead.
+        ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(requireContext(), themeResourceId);
+        LayoutInflater themedLayoutInflater = LayoutInflater.from(contextThemeWrapper);
+        binding = DataBindingUtil.inflate(themedLayoutInflater, R.layout.sb_fragment_channel_list, container, false);
         return binding.getRoot();
     }
 
