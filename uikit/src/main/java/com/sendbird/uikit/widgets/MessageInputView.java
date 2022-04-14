@@ -202,7 +202,11 @@ public class MessageInputView extends FrameLayout {
     }
 
     public void showKeyboard() {
-        binding.etInputText.setSelection(getInputText().length());
+        // The SDK originally set the cursor to the end of the field every time the user clicked the
+        // field. This blocked the user from being able to tap a position in the field and start
+        // editing from that point. It was very annoying so we are removing this behavior from the
+        // MOJO fork.
+        // binding.etInputText.setSelection(getInputText().length());
         if (displayType == KeyboardDisplayType.Dialog) {
             showInputDialog();
         } else {
