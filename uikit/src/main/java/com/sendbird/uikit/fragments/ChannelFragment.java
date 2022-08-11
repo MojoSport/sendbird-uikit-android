@@ -121,7 +121,7 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
 
     private SbFragmentChannelBinding binding;
     private ChannelViewModel viewModel;
-    private MessageListAdapter adapter;
+    protected MessageListAdapter adapter;
     private String inputHint;
     private boolean anchorDialogShowing = false;
 
