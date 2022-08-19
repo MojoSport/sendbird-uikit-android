@@ -828,27 +828,48 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
      */
     public void takeCamera() {
         SendBird.setAutoBackgroundDetection(false);
-        checkPermission(PERMISSION_REQUEST_ALL, new IPermissionHandler() {
-            @Override
-            public String[] getPermissions(int requestCode) {
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                    return new String[]{Manifest.permission.CAMERA,
-                            Manifest.permission.READ_EXTERNAL_STORAGE};
-                }
-                return new String[]{Manifest.permission.CAMERA,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE};
-            }
+        // The camera permissions is not actually required. Making an edit in the MOJO fork to
+        // remove the permissions request.
+        // checkPermission(PERMISSION_REQUEST_ALL, new IPermissionHandler() {
+        //     @Override
+        //     public String[] getPermissions(int requestCode) {
+        //         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+        //             return new String[]{Manifest.permission.CAMERA,
+        //                     Manifest.permission.READ_EXTERNAL_STORAGE};
+        //         }
+        //         return new String[]{Manifest.permission.CAMERA,
+        //                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        //                 Manifest.permission.READ_EXTERNAL_STORAGE};
+        //     }
+        //
+        //     @Override
+        //     public void onPermissionGranted(int requestCode) {
+        //         mediaUri = FileUtils.createPictureImageUri(getContext());
+        //         Intent intent = IntentUtils.getCameraIntent(getContext(), mediaUri);
+        //         if (IntentUtils.hasIntent(getContext(), intent)) {
+        //             startActivityForResult(intent, CAPTURE_IMAGE_PERMISSIONS_REQUEST_CODE);
+        //         }
+        //     }
+        // });
+         checkPermission(PERMISSION_REQUEST_ALL, new IPermissionHandler() {
+             @Override
+             public String[] getPermissions(int requestCode) {
+                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                     return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+                 }
+                 return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                         Manifest.permission.READ_EXTERNAL_STORAGE};
+             }
 
-            @Override
-            public void onPermissionGranted(int requestCode) {
-                mediaUri = FileUtils.createPictureImageUri(getContext());
-                Intent intent = IntentUtils.getCameraIntent(getContext(), mediaUri);
-                if (IntentUtils.hasIntent(getContext(), intent)) {
-                    startActivityForResult(intent, CAPTURE_IMAGE_PERMISSIONS_REQUEST_CODE);
-                }
-            }
-        });
+             @Override
+             public void onPermissionGranted(int requestCode) {
+                 mediaUri = FileUtils.createPictureImageUri(getContext());
+                 Intent intent = IntentUtils.getCameraIntent(getContext(), mediaUri);
+                 if (IntentUtils.hasIntent(getContext(), intent)) {
+                     startActivityForResult(intent, CAPTURE_IMAGE_PERMISSIONS_REQUEST_CODE);
+                 }
+             }
+         });
     }
 
     /**
