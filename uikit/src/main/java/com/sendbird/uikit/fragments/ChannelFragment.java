@@ -1147,6 +1147,10 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
 
             @Override
             public void onResultForUiThread(Intent intent, SendBirdException e) {
+                if (!isActive()) {
+                    return;
+                }
+
                 if (e != null) {
                     Logger.e(e);
                     toastError(R.string.sb_text_error_open_file);
