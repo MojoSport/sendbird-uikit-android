@@ -851,25 +851,33 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
         //         }
         //     }
         // });
-         checkPermission(PERMISSION_REQUEST_ALL, new IPermissionHandler() {
-             @Override
-             public String[] getPermissions(int requestCode) {
-                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                     return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
-                 }
-                 return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                         Manifest.permission.READ_EXTERNAL_STORAGE};
-             }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            checkPermission(PERMISSION_REQUEST_ALL, new IPermissionHandler() {
+                @Override
+                public String[] getPermissions(int requestCode) {
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                        return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+                    }
+                    return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE};
+                }
 
-             @Override
-             public void onPermissionGranted(int requestCode) {
-                 mediaUri = FileUtils.createPictureImageUri(getContext());
-                 Intent intent = IntentUtils.getCameraIntent(getContext(), mediaUri);
-                 if (IntentUtils.hasIntent(getContext(), intent)) {
-                     startActivityForResult(intent, CAPTURE_IMAGE_PERMISSIONS_REQUEST_CODE);
-                 }
-             }
-         });
+                @Override
+                public void onPermissionGranted(int requestCode) {
+                    launchCamera();
+                }
+            });
+        } else {
+            launchCamera();
+        }
+    }
+
+    private void launchCamera() {
+        mediaUri = FileUtils.createPictureImageUri(getContext());
+        Intent intent = IntentUtils.getCameraIntent(getContext(), mediaUri);
+        if (IntentUtils.hasIntent(getContext(), intent)) {
+            startActivityForResult(intent, CAPTURE_IMAGE_PERMISSIONS_REQUEST_CODE);
+        }
     }
 
     /**
@@ -879,22 +887,25 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
      */
     public void takePhoto() {
         SendBird.setAutoBackgroundDetection(false);
-        checkPermission(PERMISSION_REQUEST_STORAGE, new IPermissionHandler() {
-            @Override
-            public String[] getPermissions(int requestCode) {
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                    return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
-                }
-                return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE};
-            }
+//        checkPermission(PERMISSION_REQUEST_STORAGE, new IPermissionHandler() {
+//            @Override
+//            public String[] getPermissions(int requestCode) {
+//                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+//                    return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+//                }
+//                return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                        Manifest.permission.READ_EXTERNAL_STORAGE};
+//            }
+//
+//            @Override
+//            public void onPermissionGranted(int requestCode) {
+//                Intent intent = IntentUtils.getGalleryIntent();
+//                startActivityForResult(intent, PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
+//            }
+//        });
 
-            @Override
-            public void onPermissionGranted(int requestCode) {
-                Intent intent = IntentUtils.getGalleryIntent();
-                startActivityForResult(intent, PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
-            }
-        });
+        Intent intent = IntentUtils.getGalleryIntent();
+        startActivityForResult(intent, PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
     }
 
     /**
@@ -904,22 +915,24 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
      */
     public void takeFile() {
         SendBird.setAutoBackgroundDetection(false);
-        checkPermission(PERMISSION_REQUEST_STORAGE, new IPermissionHandler() {
-            @Override
-            public String[] getPermissions(int requestCode) {
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                    return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
-                }
-                return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE};
-            }
+//        checkPermission(PERMISSION_REQUEST_STORAGE, new IPermissionHandler() {
+//            @Override
+//            public String[] getPermissions(int requestCode) {
+//                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+//                    return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+//                }
+//                return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                        Manifest.permission.READ_EXTERNAL_STORAGE};
+//            }
+//
+//            @Override
+//            public void onPermissionGranted(int requestCode) {
+//
+//            }
+//        });
 
-            @Override
-            public void onPermissionGranted(int requestCode) {
-                Intent intent = IntentUtils.getFileChooserIntent();
-                startActivityForResult(intent, PICK_FILE_PERMISSIONS_REQUEST_CODE);
-            }
-        });
+        Intent intent = IntentUtils.getFileChooserIntent();
+        startActivityForResult(intent, PICK_FILE_PERMISSIONS_REQUEST_CODE);
     }
 
     @Override
