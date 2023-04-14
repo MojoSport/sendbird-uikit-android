@@ -927,7 +927,8 @@ public class ChannelFragment extends BaseGroupChannelFragment implements OnIdent
 //
 //            @Override
 //            public void onPermissionGranted(int requestCode) {
-//
+//                Intent intent = IntentUtils.getFileChooserIntent();
+//                startActivityForResult(intent, PICK_FILE_PERMISSIONS_REQUEST_CODE);
 //            }
 //        });
 
